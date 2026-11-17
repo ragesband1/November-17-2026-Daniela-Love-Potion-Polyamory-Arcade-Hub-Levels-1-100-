@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela Love Potion & Polyamory Arcade Hub (Levels 1-100)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        arcade: {
+                            900: '#0f0c1b',
+                            800: '#1a1429',
+                            700: '#2d224c',
+                            600: '#4c3575',
+                            500: '#794bc4',
+                            400: '#a86efd',
+                            300: '#c89ffd',
+                        },
+                        neon: {
+                            pink: '#ff2a85',
+                            cyan: '#00f0ff',
+                            green: '#39ff14',
+                            yellow: '#fefe00'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f0c1b;
+            color: #f3f4f6;
+        }
+        .font-arcade {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .neon-glow-pink {
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.6), inset 0 0 10px rgba(255, 42, 133, 0.4);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6), inset 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+        .neon-text-glow {
+            text-shadow: 0 0 10px rgba(168, 110, 253, 0.8), 0 0 20px rgba(255, 42, 133, 0.5);
+        }
+        /* Custom scrollbar for history and logs */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1429;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4c3575;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #794bc4;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-arcade-900 text-gray-100 overflow-x-hidden selection:bg-neon-pink selection:text-white">
+
+    <!-- AUDIO TOGGLE HEADER BAR -->
+    <header class="bg-arcade-800/90 backdrop-blur border-b border-arcade-700 px-4 py-3 sticky top-0 z-50 flex flex-wrap justify-between items-center shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neon-pink to-arcade-500 flex items-center justify-center neon-glow-pink animate-pulse">
+                <span class="text-xl">🧪</span>
+            </div>
+            <div>
+                <h1 class="font-arcade font-bold text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-pink to-neon-yellow">
+                    DANIELA SIQUIJOR ARCADE
+                </h1>
+                <p class="text-xs text-arcade-300">Polyamory Mastery Hub • Levels 1-100</p>
+            </div>
+        </div>
+
+        <!-- Global Audio & Stats Header Bar -->
+        <div class="flex items-center space-x-4 mt-2 sm:mt-0">
+            <div class="bg-arcade-900/80 px-3 py-1.5 rounded-lg border border-arcade-700 flex items-center space-x-2 text-sm">
+                <span class="text-neon-pink font-bold">❤️ Lives:</span>
+                <span id="global-lives" class="font-arcade text-white">3</span>
+            </div>
+            <div class="bg-arcade-900/80 px-3 py-1.5 rounded-lg border border-arcade-700 flex items-center space-x-2 text-sm">
+                <span class="text-neon-cyan font-bold">💍 Jowas:</span>
+                <span id="global-jowas-count" class="font-arcade text-white">0</span>
+            </div>
+            <button id="audio-toggle-btn" onclick="toggleGlobalAudio()" class="px-3 py-1.5 rounded-lg bg-arcade-600 hover:bg-arcade-500 text-xs font-arcade font-semibold transition flex items-center space-x-1 neon-glow-cyan">
+                <span>🔊</span> <span id="audio-status">Sound: ON</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN GAME SELECTOR NAVIGATION -->
+    <nav class="bg-arcade-800 border-b border-arcade-700 px-4 py-2 overflow-x-auto whitespace-nowrap">
+        <div class="max-w-7xl mx-auto flex space-x-2">
+            <button onclick="switchGame(1)" id="nav-btn-1" class="game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-500 text-white shadow transition">
+                1. Siquijor Potion (1-100)
+            </button>
+            <button onclick="switchGame(2)" id="nav-btn-2" class="game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-700 text-arcade-300 hover:bg-arcade-600 transition">
+                2. Country Polyamory Quick
+            </button>
+            <button onclick="switchGame(3)" id="nav-btn-3" class="game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-700 text-arcade-300 hover:bg-arcade-600 transition">
+                3. Gayuma Maze Marathon
+            </button>
+            <button onclick="switchGame(4)" id="nav-btn-4" class="game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-700 text-arcade-300 hover:bg-arcade-600 transition">
+                4. Full Name Mastery (1-100)
+            </button>
+            <button onclick="switchGame(5)" id="nav-btn-5" class="game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-700 text-arcade-300 hover:bg-arcade-600 transition">
+                5. 195 Country States Challenge
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+        <!-- GAME VIEWPORT (3 Columns on large screens) -->
+        <div class="lg:col-span-3 bg-arcade-800/60 backdrop-blur rounded-2xl border border-arcade-700 p-4 md:p-6 flex flex-col relative shadow-2xl">
+            
+            <!-- GAME 1: DANIELA LOVE POTION FOR SIQUIJOR -->
+            <div id="game-view-1" class="game-view flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 pb-3 border-b border-arcade-700">
+                    <div>
+                        <h2 class="font-arcade text-xl font-bold text-neon-pink">Daniela Love Potion for Siquijor</h2>
+                        <p class="text-xs text-arcade-300">Level <span id="g1-level">1</span>/100 • Brew the exact formula with consent!</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="text-right">
+                            <div class="text-xs text-arcade-300">Time Left</div>
+                            <div id="g1-timer" class="font-arcade text-lg text-neon-yellow font-bold">10s</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 1 Content Area -->
+                <div id="g1-screen-start" class="flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-6xl mb-4 animate-bounce">🧪💖</div>
+                    <h3 class="font-arcade text-2xl font-bold mb-2">Welcome to Siquijor Love Potion</h3>
+                    <p class="text-sm text-arcade-300 max-w-md mb-6">
+                        Brew sacred love potions for 100 unique single women with consent. Each level introduces a brand new random name never repeated before. Select correct ingredients quickly or lose a life!
+                    </p>
+                    <button onclick="startSiquijorGame()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-neon-pink to-arcade-500 font-arcade font-bold text-white shadow-lg hover:scale-105 transition neon-glow-pink">
+                        START GAME (LEVEL 1)
+                    </button>
+                </div>
+
+                <div id="g1-screen-play" class="hidden flex-1 flex flex-col justify-between">
+                    <div class="bg-arcade-900/70 p-4 rounded-xl border border-arcade-700 mb-4 text-center">
+                        <span class="text-xs text-neon-cyan uppercase font-arcade tracking-wider">Target Single to Gayumahin:</span>
+                        <h3 id="g1-target-name" class="font-arcade text-2xl font-bold text-white mt-1">Maria Clara</h3>
+                        <p class="text-xs text-arcade-300 mt-1">Formula Required: <span id="g1-formula-hint" class="text-neon-pink font-bold">Red Rose + Siquijor Root</span></p>
+                    </div>
+
+                    <!-- Potion Bottle 2D Graphic Canvas/Box -->
+                    <div class="flex-1 flex flex-col items-center justify-center my-4">
+                        <div class="relative w-36 h-48 rounded-b-3xl rounded-t-lg border-4 border-neon-cyan bg-arcade-900/90 flex flex-col items-center justify-end p-2 neon-glow-cyan overflow-hidden">
+                            <!-- Bottle Neck -->
+                            <div class="absolute -top-6 w-12 h-6 bg-arcade-700 border-2 border-neon-cyan rounded-t"></div>
+                            <!-- Liquid Level -->
+                            <div id="g1-liquid" class="w-full h-1/3 bg-gradient-to-t from-neon-pink to-arcade-500 transition-all duration-300 rounded-b-2xl opacity-80 flex items-center justify-center">
+                                <span class="text-2xl animate-pulse">✨</span>
+                            </div>
+                        </div>
+                        <p id="g1-status-msg" class="text-xs font-arcade mt-3 text-arcade-300">Select ingredients in correct sequence!</p>
+                    </div>
+
+                    <!-- Ingredient Buttons Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4" id="g1-ingredients-grid">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <div id="g1-screen-over" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-6xl mb-4">💔</div>
+                    <h3 class="font-arcade text-2xl font-bold text-red-400 mb-2">Game Over / Late!</h3>
+                    <p id="g1-over-msg" class="text-sm text-arcade-300 mb-6">You ran out of lives or time on Siquijor island.</p>
+                    <button onclick="resetSiquijorGame()" class="px-6 py-3 rounded-xl bg-arcade-600 hover:bg-arcade-500 font-arcade font-bold text-white transition">
+                        TRY AGAIN
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- GAME 2: COUNTRY POLYAMORY QUICK-FIRE -->
+            <div id="game-view-2" class="game-view hidden flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 pb-3 border-b border-arcade-700">
+                    <div>
+                        <h2 class="font-arcade text-xl font-bold text-neon-cyan">Country Polyamory Quick-Fire</h2>
+                        <p class="text-xs text-arcade-300">Identify Polyamorous regions • Avoid monogamy exes & third party traps!</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-arcade-300">Timer</div>
+                        <div id="g2-timer" class="font-arcade text-lg text-neon-yellow font-bold">7s</div>
+                    </div>
+                </div>
+
+                <div id="g2-start-screen" class="flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-6xl mb-4">🌍💍</div>
+                    <h3 class="font-arcade text-2xl font-bold mb-2">Polyamory Country Challenge</h3>
+                    <p class="text-sm text-arcade-300 max-w-md mb-6">
+                        Test your speed! Determine if the given country culture / territory accepts polyamorous relationships. Quick-fire seconds per round!
+                    </p>
+                    <button onclick="startCountryQuickGame()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-neon-cyan to-arcade-500 font-arcade font-bold text-arcade-900 shadow-lg hover:scale-105 transition neon-glow-cyan">
+                        START QUICK-FIRE
+                    </button>
+                </div>
+
+                <div id="g2-play-screen" class="hidden flex-1 flex flex-col justify-between py-6">
+                    <div class="text-center">
+                        <span class="text-xs text-arcade-300 uppercase font-arcade">Country / Region State:</span>
+                        <h3 id="g2-country-name" class="font-arcade text-3xl font-bold text-white mt-2">Philippines (Siquijor Tribe)</h3>
+                    </div>
+
+                    <div class="bg-arcade-900/60 p-6 rounded-xl border border-arcade-700 text-center max-w-lg mx-auto w-full">
+                        <p id="g2-description" class="text-sm text-arcade-300 mb-6">Does this region culturally embrace consensual polyamorous relationship structures?</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="answerCountryQuick(true)" class="p-4 rounded-xl bg-neon-green/20 border-2 border-neon-green hover:bg-neon-green/30 font-arcade font-bold text-neon-green transition text-lg">
+                                ✅ YES (POLY)
+                            </button>
+                            <button onclick="answerCountryQuick(false)" class="p-4 rounded-xl bg-neon-pink/20 border-2 border-neon-pink hover:bg-neon-pink/30 font-arcade font-bold text-neon-pink transition text-lg">
+                                ❌ NO (MONOGAMY TRAP)
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center text-xs text-arcade-300">Score: <span id="g2-score" class="font-arcade text-neon-cyan font-bold">0</span></div>
+                </div>
+
+                <div id="g2-over-screen" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <h3 class="font-arcade text-2xl font-bold text-neon-pink mb-2">Quick-Fire Round Finished!</h3>
+                    <p id="g2-final-msg" class="text-sm text-arcade-300 mb-6">Great job conquering country relationships.</p>
+                    <button onclick="resetCountryQuickGame()" class="px-6 py-3 rounded-xl bg-arcade-600 font-arcade font-bold text-white">PLAY AGAIN</button>
+                </div>
+            </div>
+
+
+            <!-- GAME 3: GAYUMA MARATHON MAZE -->
+            <div id="game-view-3" class="game-view hidden flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 pb-3 border-b border-arcade-700">
+                    <div>
+                        <h2 class="font-arcade text-xl font-bold text-neon-green">Gayuma Marathon: Polyamory vs Monogamy Maze</h2>
+                        <p class="text-xs text-arcade-300">Guide cursor/avatar • Collect girlfriend points • Avoid monogamy ex traps!</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs text-arcade-300">Level Score: <strong id="g3-score" class="text-neon-green font-arcade">0</strong></span>
+                    </div>
+                </div>
+
+                <div id="g3-start-screen" class="flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-6xl mb-4">🏃‍♂️💫</div>
+                    <h3 class="font-arcade text-2xl font-bold mb-2">Polyamory Maze Escape</h3>
+                    <p class="text-sm text-arcade-300 max-w-md mb-6">
+                        Use your mouse or touch to navigate the maze island. Collect all polyamorous girlfriend jowas (✨) while dodging toxic Monogamy Ex / Third Party traps (❌). Hitting traps costs -1 life!
+                    </p>
+                    <button onclick="startMazeGame()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-neon-green to-arcade-500 font-arcade font-bold text-arcade-900 shadow-lg hover:scale-105 transition">
+                        START MAZE MARATHON
+                    </button>
+                </div>
+
+                <div id="g3-play-screen" class="hidden flex-1 flex flex-col items-center justify-center">
+                    <div class="relative w-full max-w-xl aspect-square bg-arcade-900 rounded-xl border-2 border-neon-green overflow-hidden cursor-crosshair shadow-inner" id="maze-container">
+                        <canvas id="maze-canvas" class="w-full h-full block"></canvas>
+                        <!-- Floating HUD overlay -->
+                        <div class="absolute top-3 left-3 bg-arcade-800/80 backdrop-blur px-3 py-1 rounded border border-arcade-700 text-xs font-arcade">
+                            Jowas Collected: <span id="g3-collected" class="text-neon-green font-bold">0</span> / 5
+                        </div>
+                    </div>
+                    <p class="text-xs text-arcade-300 mt-3">Move your mouse inside the maze area to guide your heart seeker safely!</p>
+                </div>
+
+                <div id="g3-over-screen" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <h3 id="g3-over-title" class="font-arcade text-2xl font-bold text-neon-pink mb-2">Maze Completed!</h3>
+                    <p id="g3-over-msg" class="text-sm text-arcade-300 mb-6">You successfully escaped monogamy traps.</p>
+                    <button onclick="resetMazeGame()" class="px-6 py-3 rounded-xl bg-arcade-600 font-arcade font-bold text-white">PLAY AGAIN</button>
+                </div>
+            </div>
+
+
+            <!-- GAME 4: FILL FULL NAME NAME MASTERY (LEVELS 1-100) -->
+            <div id="game-view-4" class="game-view hidden flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 pb-3 border-b border-arcade-700">
+                    <div>
+                        <h2 class="font-arcade text-xl font-bold text-neon-yellow">Fill Full Name - Single to Polyamorous Girlfriends (Levels 1-100)</h2>
+                        <p class="text-xs text-arcade-300">Type First, Middle Initial & Surname • Press Enter • Level <span id="g4-level">1</span>/100</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-arcade-300">Time Limit</div>
+                        <div id="g4-timer" class="font-arcade text-lg text-neon-yellow font-bold">15s</div>
+                    </div>
+                </div>
+
+                <div id="g4-start-screen" class="flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-6xl mb-4">✍️💖</div>
+                    <h3 class="font-arcade text-2xl font-bold mb-2">Name Mastery 100 Levels</h3>
+                    <p class="text-sm text-arcade-300 max-w-md mb-6">
+                        Type the complete name (First, Middle Initial, Surname) of your single-to-polyamorous girlfriends without any spelling errors. Press Enter to submit before the timer expires!
+                    </p>
+                    <button onclick="startNameMasteryGame()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-neon-yellow to-orange-500 font-arcade font-bold text-arcade-900 shadow-lg hover:scale-105 transition">
+                        START NAME MASTERY
+                    </button>
+                </div>
+
+                <div id="g4-play-screen" class="hidden flex-1 flex flex-col justify-center max-w-lg mx-auto w-full">
+                    <div class="bg-arcade-900/80 p-6 rounded-2xl border border-arcade-700 shadow-xl text-center">
+                        <span class="text-xs text-arcade-300 uppercase font-arcade">Target Girlfriend Full Name:</span>
+                        <h3 id="g4-target-name" class="font-arcade text-2xl font-bold text-neon-yellow mt-2 mb-4">Maria Santos Reyes</h3>
+                        <p class="text-xs text-arcade-300 mb-6">Format required: <code class="bg-arcade-800 px-2 py-1 rounded text-neon-cyan">First MiddleInitial Surname</code></p>
+                        
+                        <form onsubmit="submitNameMastery(event)" class="space-y-4">
+                            <input type="text" id="g4-input" autocomplete="off" placeholder="Type full name here..." class="w-full px-4 py-3 rounded-xl bg-arcade-800 border-2 border-arcade-600 focus:border-neon-yellow text-white font-arcade text-center outline-none transition">
+                            <button type="submit" class="w-full py-3 rounded-xl bg-neon-yellow font-arcade font-bold text-arcade-900 hover:brightness-110 transition shadow-lg">
+                                SUBMIT NAME & LEVEL UP ↵
+                            </button>
+                        </form>
+                        <p id="g4-feedback" class="text-xs font-arcade mt-4 text-arcade-300">Type accurately to make love potion permanent!</p>
+                    </div>
+                </div>
+
+                <div id="g4-over-screen" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <h3 id="g4-over-title" class="font-arcade text-2xl font-bold text-neon-pink mb-2">Name Mastery Completed!</h3>
+                    <p id="g4-over-msg" class="text-sm text-arcade-300 mb-6">All girlfriend names mastered permanently.</p>
+                    <button onclick="resetNameMasteryGame()" class="px-6 py-3 rounded-xl bg-arcade-600 font-arcade font-bold text-white">PLAY AGAIN</button>
+                </div>
+            </div>
+
+
+            <!-- GAME 5: POLYAMOROUS VS MONOGAMOUS 195 COUNTRY STATES CHALLENGE -->
+            <div id="game-view-5" class="game-view hidden flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 pb-3 border-b border-arcade-700">
+                    <div>
+                        <h2 class="font-arcade text-xl font-bold text-neon-pink">195 Country States Challenge (Polyamory vs Monogamy)</h2>
+                        <p class="text-xs text-arcade-300">Level <span id="g5-level">1</span>/100 • Sort country cultural acceptance correctly!</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-arcade-300">Score</div>
+                        <div id="g5-score" class="font-arcade text-lg text-neon-green font-bold">0</div>
+                    </div>
+                </div>
+
+                <div id="g5-start-screen" class="flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-6xl mb-4">🗺️✨</div>
+                    <h3 class="font-arcade text-2xl font-bold mb-2">195 Country States Challenge</h3>
+                    <p class="text-sm text-arcade-300 max-w-md mb-6">
+                        Review countries across the globe. Click YES if the nation embraces polyamorous relationship acceptance, or NO if strictly monogamous (avoiding ex/third-party monogamy traps).
+                    </p>
+                    <button onclick="startCountryStatesGame()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-neon-pink to-neon-cyan font-arcade font-bold text-arcade-900 shadow-lg hover:scale-105 transition">
+                        START 195 STATES CHALLENGE
+                    </button>
+                </div>
+
+                <div id="g5-play-screen" class="hidden flex-1 flex flex-col justify-center max-w-lg mx-auto w-full text-center">
+                    <div class="bg-arcade-900/80 p-8 rounded-2xl border border-arcade-700 shadow-xl">
+                        <span class="text-xs text-arcade-300 uppercase font-arcade">Country State <span id="g5-counter">1</span> of 100:</span>
+                        <h3 id="g5-country-name" class="font-arcade text-3xl font-bold text-white my-4">France</h3>
+                        <p class="text-xs text-arcade-300 mb-8">Does this nation feature progressive legal or cultural recognition/tolerance for polyamorous family structures?</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="answerCountryState(true)" class="p-4 rounded-xl bg-neon-green/20 border-2 border-neon-green hover:bg-neon-green/30 font-arcade font-bold text-neon-green transition text-lg">
+                                ✅ YES (POLY)
+                            </button>
+                            <button onclick="answerCountryState(false)" class="p-4 rounded-xl bg-neon-pink/20 border-2 border-neon-pink hover:bg-neon-pink/30 font-arcade font-bold text-neon-pink transition text-lg">
+                                ❌ NO (MONOGAMY TRAP)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="g5-over-screen" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8">
+                    <h3 id="g5-over-title" class="font-arcade text-2xl font-bold text-neon-cyan mb-2">Challenge Completed!</h3>
+                    <p id="g5-over-msg" class="text-sm text-arcade-300 mb-6">You successfully navigated 195 country state polyamory standards.</p>
+                    <button onclick="resetCountryStatesGame()" class="px-6 py-3 rounded-xl bg-arcade-600 font-arcade font-bold text-white">PLAY AGAIN</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SIDEBAR: HISTORY & POLYAMOROUS RELATIONSHIP ROSTER -->
+        <div class="bg-arcade-800/60 backdrop-blur rounded-2xl border border-arcade-700 p-4 flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-arcade-700 mb-4">
+                <h3 class="font-arcade font-bold text-sm text-neon-cyan flex items-center space-x-2">
+                    <span>📜</span> <span>Polyamory History Log</span>
+                </h3>
+                <span id="sidebar-total-jowas" class="bg-arcade-700 px-2.5 py-0.5 rounded-full text-xs font-arcade text-neon-pink">0 Jowas</span>
+            </div>
+
+            <!-- Roster Search / Filter -->
+            <div class="mb-3">
+                <input type="text" id="roster-search" oninput="filterRoster()" placeholder="Search girlfriend history..." class="w-full px-3 py-1.5 rounded-lg bg-arcade-900 border border-arcade-700 text-xs text-white placeholder-arcade-300 focus:outline-none focus:border-neon-cyan">
+            </div>
+
+            <!-- Girlfriends / Relationships List Container -->
+            <div id="roster-list" class="flex-1 overflow-y-auto space-y-2 max-h-[500px] pr-1">
+                <div class="text-center text-xs text-arcade-300 py-8">
+                    No relationships conquered yet. Start playing games to build your Siquijor polyamory family tree!
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-arcade-700 text-center">
+                <button onclick="exportHistory()" class="w-full py-2 rounded-lg bg-arcade-700 hover:bg-arcade-600 font-arcade text-xs text-arcade-300 transition">
+                    📥 Export History Log
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-arcade-800 border-t border-arcade-700 py-3 px-4 text-center text-xs text-arcade-300">
+        Daniela Love Potion for Siquijor & Polyamory Arcade Hub • Levels 1-100 • Built with HTML5, Tailwind CSS, & Web Audio API.
+    </footer>
+
+    <!-- JAVASCRIPT GAME ENGINE -->
+    <script>
+        /* ==========================================================
+           GLOBAL STATE & WEB AUDIO SYNTHESIZER
+           ========================================================== */
+        let globalState = {
+            lives: 3,
+            soundEnabled: true,
+            currentActiveGame: 1,
+            conqueredJowas: [] // List of names/entities conquered across all games
+        };
+
+        // Web Audio API Synthesizer for Sound Effects & MP3 Simulation
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(type) {
+            if (!globalState.soundEnabled) return;
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+                if (type === 'success') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'error') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.linearRampToValueAtTime(90, now + 0.25);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'click') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(600, now);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'win') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                }
+            } catch(e) {
+                console.log('Audio playback notice:', e);
+            }
+        }
+
+        function toggleGlobalAudio() {
+            globalState.soundEnabled = !globalState.soundEnabled;
+            document.getElementById('audio-status').innerText = globalState.soundEnabled ? 'Sound: ON' : 'Sound: OFF';
+            playSound('click');
+        }
+
+        function updateGlobalHUD() {
+            document.getElementById('global-lives').innerText = globalState.lives;
+            document.getElementById('global-jowas-count').innerText = globalState.conqueredJowas.length;
+            document.getElementById('sidebar-total-jowas').innerText = globalState.conqueredJowas.length + ' Jowas';
+            renderRoster();
+        }
+
+        function addJowaToHistory(name, sourceGame) {
+            if (!globalState.conqueredJowas.some(j => j.name === name)) {
+                globalState.conqueredJowas.push({
+                    name: name,
+                    source: sourceGame,
+                    date: new Date().toLocaleTimeString()
+                });
+                updateGlobalHUD();
+            }
+        }
+
+        function renderRoster(filter = '') {
+            const listEl = document.getElementById('roster-list');
+            const filtered = globalState.conqueredJowas.filter(j => j.name.toLowerCase().includes(filter.toLowerCase()));
+            
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<div class="text-center text-xs text-arcade-300 py-8">No matching girlfriends found in history.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = filtered.map((j, idx) => `
+                <div class="bg-arcade-900/80 p-2.5 rounded-xl border border-arcade-700 flex justify-between items-center text-xs">
+                    <div>
+                        <div class="font-arcade font-bold text-neon-pink">${idx + 1}. ${j.name}</div>
+                        <div class="text-[10px] text-arcade-300">Source: ${j.source} • ${j.date}</div>
+                    </div>
+                    <span class="text-neon-cyan text-sm">💖</span>
+                </div>
+            `).join('');
+        }
+
+        function filterRoster() {
+            const query = document.getElementById('roster-search').value;
+            renderRoster(query);
+        }
+
+        function exportHistory() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(globalState.conqueredJowas, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "polyamory_girlfriends_history.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        // Game Navigation Switcher
+        function switchGame(gameNum) {
+            playSound('click');
+            globalState.currentActiveGame = gameNum;
+            document.querySelectorAll('.game-view').forEach(v => v.classList.add('hidden'));
+            document.getElementById(`game-view-${gameNum}`).classList.remove('hidden');
+
+            document.querySelectorAll('.game-nav-btn').forEach((btn, idx) => {
+                if (idx + 1 === gameNum) {
+                    btn.className = "game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-500 text-white shadow transition";
+                } else {
+                    btn.className = "game-nav-btn px-4 py-2 rounded-lg font-arcade text-xs uppercase tracking-wider bg-arcade-700 text-arcade-300 hover:bg-arcade-600 transition";
+                }
+            });
+
+            // Stop loops if switching away
+            if (gameNum !== 1 && g1TimerInterval) clearInterval(g1TimerInterval);
+            if (gameNum !== 2 && g2TimerInterval) clearInterval(g2TimerInterval);
+            if (gameNum !== 3) stopMazeLoop();
+            if (gameNum !== 4 && g4TimerInterval) clearInterval(g4TimerInterval);
+        }
+
+
+        /* ==========================================================
+           GAME 1: DANIELA LOVE POTION FOR SIQUIJOR (LEVELS 1-100)
+           ========================================================== */
+        const femaleNamesPool = [
+            "Maria Clara", "Elena", "Sofia", "Isabella", "Catalina", "Bianca", "Gabriela", "Aurora", "Victoria", "Beatrice",
+            "Camila", "Valeria", "Lucia", "Alessia", "Daniela", "Angelica", "Samantha", "Patricia", "Jasmine", "Bea",
+            "Chloe", "Zoe", "Nikita", "Celeste", "Rosario", "Esperanza", "Milagros", "Carmela", "Paloma", "Renata",
+            "Adela", "Alicia", "Amalia", "Ana", "Antonia", "Belen", "Caridad", "Clara", "Concepcion", "Consuelo",
+            "Dolores", "Encarnacion", "Estrella", "Fatima", "Fuensanta", "Genoveva", "Gracia", "Guadalupe", "Ines", "Josefina",
+            "Juana", "Leocadia", "Lourdes", "Macarena", "Manuela", "Margarita", "Mercedes", "Montserrat", "Nieves", "Paloma",
+            "Pilar", "Rocio", "Rosario", "Sagrario", "Soledad", "Trinidad", "Agustina", "Bernarda", "Candelaria", "Cenobia",
+            "Eufemia", "Felicidad", "Florentina", "Gertrudis", "Gumersinda", "Herminia", "Hilaria", "Jacinta", " Leocadia", "Maximiana",
+            "Modesta", "Natividad", " Nemesia", "Olimpia", "Pascuala", "Petronila", "Prudencia", " Remedios", "Rufina", "Secundina",
+            "Teodora", "Teresa", " Urbana", "Ventura", "Vicenta", "Vitaliana", "Zenobia", "Avelina", "Dionisia", "Eulalia"
+        ];
+
+        let g1Level = 1;
+        let g1Timer = 10;
+        let g1TimerInterval = null;
+        let g1CurrentTarget = "";
+        let g1CurrentFormula = [];
+        let g1PlayerFormula = [];
+        const allIngredientsList = ["Red Rose Petals", "Siquijor Root", "Moonlight Dew", "Cacao Bean", "Vanilla Pod", "Honey Extract", "Lavender Oil", "Star Anise"];
+        let usedNamesHistoryG1 = [];
+
+        function startSiquijorGame() {
+            playSound('click');
+            g1Level = 1;
+            document.getElementById('g1-screen-start').classList.add('hidden');
+            document.getElementById('g1-screen-over').classList.add('hidden');
+            document.getElementById('g1-screen-play').classList.remove('hidden');
+            loadSiquijorLevel();
+        }
+
+        function loadSiquijorLevel() {
+            if (g1Level > 100) {
+                alertUser("Congratulations! You completed all 100 levels of Daniela Love Potion for Siquijor!");
+                switchGame(2);
+                return;
+            }
+
+            document.getElementById('g1-level').innerText = g1Level;
+            
+            // Pick a random unused name
+            let availableNames = femaleNamesPool.filter(n => !usedNamesHistoryG1.includes(n));
+            if (availableNames.length === 0) availableNames = femaleNamesPool;
+            g1CurrentTarget = availableNames[Math.floor(Math.random() * availableNames.length)];
+            usedNamesHistoryG1.push(g1CurrentTarget);
+
+            // Generate formula (2 to 3 ingredients)
+            g1CurrentFormula = [];
+            let shuffledIng = [...allIngredientsList].sort(() => 0.5 - Math.random());
+            let formulaLength = g1Level > 50 ? 3 : 2;
+            for (let i = 0; i < formulaLength; i++) {
+                g1CurrentFormula.push(shuffledIng[i]);
+            }
+            g1PlayerFormula = [];
+
+            document.getElementById('g1-target-name').innerText = g1CurrentTarget;
+            document.getElementById('g1-formula-hint').innerText = g1CurrentFormula.join(" + ");
+            document.getElementById('g1-status-msg').innerText = `Level ${g1Level}: Brew the potion in correct sequence!`;
+            
+            renderSiquijorIngredients();
+
+            // Timer
+            g1Timer = 12;
+            document.getElementById('g1-timer').innerText = g1Timer + 's';
+            if (g1TimerInterval) clearInterval(g1TimerInterval);
+            g1TimerInterval = setInterval(() => {
+                g1Timer--;
+                document.getElementById('g1-timer').innerText = g1Timer + 's';
+                if (g1Timer <= 0) {
+                    clearInterval(g1TimerInterval);
+                    handleG1Failure("Time expired for level " + g1Level);
+                }
+            }, 1000);
+        }
+
+        function renderSiquijorIngredients() {
+            const grid = document.getElementById('g1-ingredients-grid');
+            // Shuffle all ingredients for selection buttons
+            let displayIngs = [...allIngredientsList].sort(() => 0.5 - Math.random());
+            grid.innerHTML = displayIngs.map(ing => `
+                <button onclick="selectG1Ingredient('${ing}')" class="p-3 rounded-xl bg-arcade-700/80 hover:bg-arcade-600 border border-arcade-600 font-arcade text-xs text-white transition active:scale-95 shadow">
+                    🌿 ${ing}
+                </button>
+            `).join('');
+        }
+
+        function selectG1Ingredient(ing) {
+            playSound('click');
+            g1PlayerFormula.push(ing);
+            let currentIndex = g1PlayerFormula.length - 1;
+
+            if (g1PlayerFormula[currentIndex] !== g1CurrentFormula[currentIndex]) {
+                // Wrong ingredient!
+                clearInterval(g1TimerInterval);
+                handleG1Failure("Wrong ingredient added!");
+                return;
+            }
+
+            // Update bottle visual
+            let pct = (g1PlayerFormula.length / g1CurrentFormula.length) * 100;
+            document.getElementById('g1-liquid').style.height = pct + '%';
+
+            if (g1PlayerFormula.length === g1CurrentFormula.length) {
+                // Level Success!
+                clearInterval(g1TimerInterval);
+                playSound('success');
+                addJowaToHistory(g1CurrentTarget + " (Siquijor Lvl " + g1Level + ")", "Siquijor Potion");
+                
+                if (g1Level === 100) {
+                    alertUser("🎉 CONGRATULATIONS! You successfully finished Levels 1-100 of Daniela Love Potion for Siquijor!");
+                    switchGame(2);
+                    return;
+                }
+
+                g1Level++;
+                setTimeout(loadSiquijorLevel, 800);
+            }
+        }
+
+        function handleG1Failure(msg) {
+            playSound('error');
+            globalState.lives--;
+            updateGlobalHUD();
+            if (globalState.lives <= 0) {
+                document.getElementById('g1-screen-play').classList.add('hidden');
+                document.getElementById('g1-screen-over').classList.remove('hidden');
+                document.getElementById('g1-over-msg').innerText = msg + " Game Over!";
+            } else {
+                document.getElementById('g1-status-msg').innerText = "❌ " + msg + " -1 Life! Retrying level...";
+                setTimeout(loadSiquijorLevel, 1200);
+            }
+        }
+
+        function resetSiquijorGame() {
+            globalState.lives = 3;
+            updateGlobalHUD();
+            startSiquijorGame();
+        }
+
+
+        /* ==========================================================
+           GAME 2: COUNTRY POLYAMORY QUICK-FIRE
+           ========================================================== */
+        const countriesQuickData = [
+            { name: "Philippines (Siquijor Island)", poly: true, desc: "Traditional mystic traditions and flexible open relationship acceptance." },
+            { name: "Vatican City", poly: false, desc: "Strict monogamous canonical laws. Monogamy trap!" },
+            { name: "Thailand (Northern Hill Tribes)", poly: true, desc: "Historical acceptance of multi-partner family bonds." },
+            { name: "Iceland", poly: true, desc: "Modern progressive open relationship and progressive cultural legal reforms." },
+            { name: "Japan (Traditional Edo Monogamy)", poly: false, desc: "Strict legal monogamy norms." },
+            { name: "Brazil (Amazonian Indigenous Tribes)", poly: true, desc: "Customary multi-partner kinship systems." },
+            { name: "Saudi Arabia (Strict Monogamy Legal Code)", poly: false, desc: "Strict monogamy rules outside historical exceptions." },
+            { name: "United States (Polyamorous Communities in CA/OR)", poly: true, desc: "Growing legal and cultural polyamorous domestic partnerships." }
+        ];
+
+        let g2Index = 0;
+        let g2Score = 0;
+        let g2Timer = 7;
+        let g2TimerInterval = null;
+        let currentG2Item = null;
+
+        function startCountryQuickGame() {
+            playSound('click');
+            g2Index = 0;
+            g2Score = 0;
+            document.getElementById('g2-start-screen').classList.add('hidden');
+            document.getElementById('g2-over-screen').classList.add('hidden');
+            document.getElementById('g2-play-screen').classList.remove('hidden');
+            nextCountryQuickRound();
+        }
+
+        function nextCountryQuickRound() {
+            if (g2Index >= countriesQuickData.length) {
+                document.getElementById('g2-play-screen').classList.add('hidden');
+                document.getElementById('g2-over-screen').classList.remove('hidden');
+                document.getElementById('g2-final-msg').innerText = `Completed! Score: ${g2Score}/${countriesQuickData.length}`;
+                playSound('win');
+                return;
+            }
+
+            currentG2Item = countriesQuickData[g2Index];
+            document.getElementById('g2-country-name').innerText = currentG2Item.name;
+            document.getElementById('g2-description').innerText = currentG2Item.desc;
+            document.getElementById('g2-score').innerText = g2Score;
+
+            g2Timer = 8;
+            document.getElementById('g2-timer').innerText = g2Timer + 's';
+            if (g2TimerInterval) clearInterval(g2TimerInterval);
+            g2TimerInterval = setInterval(() => {
+                g2Timer--;
+                document.getElementById('g2-timer').innerText = g2Timer + 's';
+                if (g2Timer <= 0) {
+                    clearInterval(g2TimerInterval);
+                    answerCountryQuick(null); // Timeout counts as wrong
+                }
+            }, 1000);
+        }
+
+        function answerCountryQuick(userChoice) {
+            clearInterval(g2TimerInterval);
+            if (userChoice === currentG2Item.poly) {
+                playSound('success');
+                g2Score++;
+                if (currentG2Item.poly) {
+                    addJowaToHistory(currentG2Item.name + " Territory Girlfriend", "Country Quick-Fire");
+                }
+            } else {
+                playSound('error');
+                globalState.lives--;
+                updateGlobalHUD();
+                if (globalState.lives <= 0) {
+                    document.getElementById('g2-play-screen').classList.add('hidden');
+                    document.getElementById('g2-over-screen').classList.remove('hidden');
+                    document.getElementById('g2-final-msg').innerText = "Game Over! Monogamy trap hit.";
+                    return;
+                }
+            }
+            g2Index++;
+            setTimeout(nextCountryQuickRound, 600);
+        }
+
+        function resetCountryQuickGame() {
+            globalState.lives = 3;
+            updateGlobalHUD();
+            startCountryQuickGame();
+        }
+
+
+        /* ==========================================================
+           GAME 3: GAYUMA MARATHON POLYAMORY VS MONOGAMY MAZE
+           ========================================================== */
+        let mazeCanvas, mazeCtx;
+        let mazeInterval = null;
+        let playerX = 50, playerY = 50;
+        let mazeCollected = 0;
+        let mazeItems = [];
+        let mazeTraps = [];
+
+        function startMazeGame() {
+            playSound('click');
+            document.getElementById('g3-start-screen').classList.add('hidden');
+            document.getElementById('g3-over-screen').classList.add('hidden');
+            document.getElementById('g3-play-screen').classList.remove('hidden');
+            
+            mazeCanvas = document.getElementById('maze-canvas');
+            mazeCtx = mazeCanvas.getContext('2d');
+            resizeMazeCanvas();
+
+            mazeCollected = 0;
+            document.getElementById('g3-collected').innerText = mazeCollected;
+
+            // Generate items & traps
+            mazeItems = [
+                {x: 100, y: 100, name: "Island Jowa #1", collected: false},
+                {x: 300, y: 80, name: "Island Jowa #2", collected: false},
+                {x: 200, y: 250, name: "Island Jowa #3", collected: false},
+                {x: 350, y: 300, name: "Island Jowa #4", collected: false},
+                {x: 120, y: 320, name: "Island Jowa #5", collected: false}
+            ];
+
+            mazeTraps = [
+                {x: 180, y: 150, vx: 2, vy: 1},
+                {x: 250, y: 200, vx: -1.5, vy: 2}
+            ];
+
+            // Mouse move listener for smooth hover control
+            const container = document.getElementById('maze-container');
+            container.onmousemove = (e) => {
+                const rect = mazeCanvas.getBoundingClientRect();
+                playerX = e.clientX - rect.left;
+                playerY = e.clientY - rect.top;
+            };
+
+            if (mazeInterval) clearInterval(mazeInterval);
+            mazeInterval = setInterval(updateMazeGame, 30);
+        }
+
+        function resizeMazeCanvas() {
+            if (!mazeCanvas) return;
+            mazeCanvas.width = mazeCanvas.parentElement.clientWidth;
+            mazeCanvas.height = 380;
+        }
+
+        function updateMazeGame() {
+            if (!mazeCtx) return;
+            mazeCtx.clearRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+
+            // Draw Background grid / islands
+            mazeCtx.fillStyle = '#1a1429';
+            mazeCtx.fillRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+
+            // Draw Traps (Monogamy ex / third party)
+            mazeTraps.forEach(t => {
+                t.x += t.vx;
+                t.y += t.vy;
+                if (t.x < 20 || t.x > mazeCanvas.width - 20) t.vx *= -1;
+                if (t.y < 20 || t.y > mazeCanvas.height - 20) t.vy *= -1;
+
+                mazeCtx.fillStyle = '#ff2a85';
+                mazeCtx.beginPath();
+                mazeCtx.arc(t.x, t.y, 14, 0, Math.PI * 2);
+                mazeCtx.fill();
+                mazeCtx.fillStyle = '#ffffff';
+                mazeCtx.font = '10px Orbitron';
+                mazeCtx.fillText("❌ EX", t.x - 14, t.y - 18);
+
+                // Collision with player
+                let dist = Math.hypot(playerX - t.x, playerY - t.y);
+                if (dist < 22) {
+                    playSound('error');
+                    globalState.lives--;
+                    updateGlobalHUD();
+                    playerX = 30; playerY = 30; // reset pos
+                    if (globalState.lives <= 0) {
+                        stopMazeLoop();
+                        document.getElementById('g3-play-screen').classList.add('hidden');
+                        document.getElementById('g3-over-screen').classList.remove('hidden');
+                        document.getElementById('g3-over-title').innerText = "Game Over!";
+                        document.getElementById('g3-over-msg').innerText = "Hit monogamy ex trap (-1 life)";
+                    }
+                }
+            });
+
+            // Draw Items (Jowas)
+            mazeItems.forEach(item => {
+                if (!item.collected) {
+                    mazeCtx.fillStyle = '#39ff14';
+                    mazeCtx.beginPath();
+                    mazeCtx.arc(item.x, item.y, 12, 0, Math.PI * 2);
+                    mazeCtx.fill();
+                    mazeCtx.fillStyle = '#ffffff';
+                    mazeCtx.font = '10px Orbitron';
+                    mazeCtx.fillText("✨ Jowa", item.x - 18, item.y - 16);
+
+                    // Check collection
+                    let dist = Math.hypot(playerX - item.x, playerY - item.y);
+                    if (dist < 20) {
+                        item.collected = true;
+                        mazeCollected++;
+                        playSound('success');
+                        document.getElementById('g3-collected').innerText = mazeCollected;
+                        document.getElementById('g3-score').innerText = mazeCollected * 10;
+                        addJowaToHistory(item.name, "Maze Marathon");
+
+                        if (mazeCollected >= mazeItems.length) {
+                            stopMazeLoop();
+                            document.getElementById('g3-play-screen').classList.add('hidden');
+                            document.getElementById('g3-over-screen').classList.remove('hidden');
+                            document.getElementById('g3-over-title').innerText = "CONGRATULATIONS!";
+                            document.getElementById('g3-over-msg').innerText = "All polyamorous girlfriend points collected safely!";
+                            playSound('win');
+                        }
+                    }
+                }
+            });
+
+            // Draw Player Cursor (Heart Seeker)
+            mazeCtx.fillStyle = '#00f0ff';
+            mazeCtx.beginPath();
+            mazeCtx.arc(playerX, playerY, 10, 0, Math.PI * 2);
+            mazeCtx.fill();
+            mazeCtx.strokeStyle = '#ffffff';
+            mazeCtx.lineWidth = 2;
+            mazeCtx.stroke();
+        }
+
+        function stopMazeLoop() {
+            if (mazeInterval) clearInterval(mazeInterval);
+        }
+
+        function resetMazeGame() {
+            globalState.lives = 3;
+            updateGlobalHUD();
+            startMazeGame();
+        }
+
+
+        /* ==========================================================
+           GAME 4: FILL FULL NAME - SINGLE TO POLYAMOROUS GIRLFRIENDS (LEVELS 1-100)
+           ========================================================== */
+        let g4Level = 1;
+        let g4Timer = 18;
+        let g4TimerInterval = null;
+        let g4CurrentNameObj = {};
+
+        const g4NamesPool = [
+            { first: "Maria", middle: "S.", last: "Santos" },
+            { first: "Elena", middle: "R.", last: "Reyes" },
+            { first: "Sofia", middle: "M.", last: "Cruz" },
+            { first: "Isabella", middle: "D.", last: "Garcia" },
+            { first: "Catalina", middle: "A.", last: "Bautista" },
+            { first: "Bianca", middle: "L.", last: "Aquino" },
+            { first: "Gabriela", middle: "C.", last: "Ramos" },
+            { first: "Aurora", middle: "J.", last: "Mendoza" },
+            { first: "Victoria", middle: "E.", last: "Torres" },
+            { first: "Beatrice", middle: "N.", last: "Flores" },
+            { first: "Camila", middle: "O.", last: "Gonzales" },
+            { first: "Valeria", middle: "P.", last: "Rivera" },
+            { first: "Lucia", middle: "Q.", last: "Castillo" },
+            { first: "Alessia", middle: "R.", last: "Villanueva" },
+            { first: "Daniela", middle: "S.", last: "De Guzman" },
+            { first: "Angelica", middle: "T.", last: "Sison" },
+            { first: "Samantha", middle: "U.", last: "Pascual" },
+            { first: "Patricia", middle: "V.", last: "Mercado" },
+            { first: "Jasmine", middle: "W.", last: "Navarro" },
+            { first: "Bea", middle: "X.", last: "Soriano" }
+        ];
+
+        function startNameMasteryGame() {
+            playSound('click');
+            g4Level = 1;
+            document.getElementById('g4-start-screen').classList.add('hidden');
+            document.getElementById('g4-over-screen').classList.add('hidden');
+            document.getElementById('g4-play-screen').classList.remove('hidden');
+            loadNameMasteryLevel();
+        }
+
+        function loadNameMasteryLevel() {
+            if (g4Level > 100) {
+                alertUser("🎉 CONGRATULATIONS! You completed all 100 levels of Full Name Mastery!");
+                switchGame(5);
+                return;
+            }
+
+            document.getElementById('g4-level').innerText = g4Level;
+            let idx = (g4Level - 1) % g4NamesPool.length;
+            g4CurrentNameObj = g4NamesPool[idx];
+            
+            // Generate display target with level variation
+            let fullName = `${g4CurrentNameObj.first} ${g4CurrentNameObj.middle} ${g4CurrentNameObj.last}`;
+            if (g4Level > 20) fullName += ` (Poly #${g4Level})`;
+            g4CurrentNameObj.fullString = fullName;
+
+            document.getElementById('g4-target-name').innerText = fullName;
+            document.getElementById('g4-input').value = "";
+            document.getElementById('g4-feedback').innerText = `Level ${g4Level}: Type full name accurately before timer!`;
+
+            g4Timer = 20;
+            document.getElementById('g4-timer').innerText = g4Timer + 's';
+            if (g4TimerInterval) clearInterval(g4TimerInterval);
+            g4TimerInterval = setInterval(() => {
+                g4Timer--;
+                document.getElementById('g4-timer').innerText = g4Timer + 's';
+                if (g4Timer <= 0) {
+                    clearInterval(g4TimerInterval);
+                    handleG4Failure("Time expired for name mastery!");
+                }
+            }, 1000);
+        }
+
+        function submitNameMastery(e) {
+            e.preventDefault();
+            clearInterval(g4TimerInterval);
+            const userTyped = document.getElementById('g4-input').value.trim();
+
+            if (userTyped.toLowerCase() === g4CurrentNameObj.fullString.toLowerCase()) {
+                playSound('success');
+                addJowaToHistory(g4CurrentNameObj.fullString, "Name Mastery 100L");
+                g4Level++;
+                setTimeout(loadNameMasteryLevel, 600);
+            } else {
+                handleG4Failure("Incorrect spelling or name format!");
+            }
+        }
+
+        function handleG4Failure(msg) {
+            playSound('error');
+            globalState.lives--;
+            updateGlobalHUD();
+            if (globalState.lives <= 0) {
+                document.getElementById('g4-play-screen').classList.add('hidden');
+                document.getElementById('g4-over-screen').classList.remove('hidden');
+                document.getElementById('g4-over-title').innerText = "Game Over!";
+                document.getElementById('g4-over-msg').innerText = msg + " Permanent love potion failed.";
+            } else {
+                document.getElementById('g4-feedback').innerText = "❌ " + msg + " -1 Life! Retrying...";
+                setTimeout(loadNameMasteryLevel, 1200);
+            }
+        }
+
+        function resetNameMasteryGame() {
+            globalState.lives = 3;
+            updateGlobalHUD();
+            startNameMasteryGame();
+        }
+
+
+        /* ==========================================================
+           GAME 5: POLYAMOROUS VS MONOGAMOUS 195 COUNTRY STATES CHALLENGE
+           ========================================================== */
+        let g5Level = 1;
+        let g5Score = 0;
+        let g5CurrentItem = null;
+
+        const countryStates195Pool = [
+            { name: "France", poly: true },
+            { name: "Japan", poly: false },
+            { name: "Philippines (Siquijor)", poly: true },
+            { name: "Saudi Arabia", poly: false },
+            { name: "Brazil", poly: true },
+            { name: "Vatican City", poly: false },
+            { name: "Iceland", poly: true },
+            { name: "Italy", poly: false },
+            { name: "Canada (Ontario Poly Communities)", poly: true },
+            { name: "South Korea", poly: false }
+        ];
+
+        function startCountryStatesGame() {
+            playSound('click');
+            g5Level = 1;
+            g5Score = 0;
+            document.getElementById('g5-start-screen').classList.add('hidden');
+            document.getElementById('g5-over-screen').classList.add('hidden');
+            document.getElementById('g5-play-screen').classList.remove('hidden');
+            loadCountryStateRound();
+        }
+
+        function loadCountryStateRound() {
+            if (g5Level > 100) {
+                document.getElementById('g5-play-screen').classList.add('hidden');
+                document.getElementById('g5-over-screen').classList.remove('hidden');
+                document.getElementById('g5-over-title').innerText = "🎉 CONGRATULATIONS!";
+                document.getElementById('g5-over-msg').innerText = `Completed all 100 Country State levels! Final Score: ${g5Score}`;
+                playSound('win');
+                return;
+            }
+
+            document.getElementById('g5-level').innerText = g5Level;
+            document.getElementById('g5-counter').innerText = g5Level;
+            document.getElementById('g5-score').innerText = g5Score;
+
+            let idx = (g5Level - 1) % countryStates195Pool.length;
+            g5CurrentItem = countryStates195Pool[idx];
+            document.getElementById('g5-country-name').innerText = g5CurrentItem.name;
+        }
+
+        function answerCountryState(userPolyChoice) {
+            if (userPolyChoice === g5CurrentItem.poly) {
+                playSound('success');
+                g5Score += 10;
+                if (g5CurrentItem.poly) {
+                    addJowaToHistory(g5CurrentItem.name + " State Partner", "195 States Challenge");
+                }
+            } else {
+                playSound('error');
+                globalState.lives--;
+                updateGlobalHUD();
+                if (globalState.lives <= 0) {
+                    document.getElementById('g5-play-screen').classList.add('hidden');
+                    document.getElementById('g5-over-screen').classList.remove('hidden');
+                    document.getElementById('g5-over-title').innerText = "Game Over!";
+                    document.getElementById('g5-over-msg').innerText = "Incorrect country sorting. Monogamy trap hit.";
+                    return;
+                }
+            }
+
+            g5Level++;
+            loadCountryStateRound();
+        }
+
+        function resetCountryStatesGame() {
+            globalState.lives = 3;
+            updateGlobalHUD();
+            startCountryStatesGame();
+        }
+
+        // Custom non-blocking message box replacing alert()
+        function alertUser(msg) {
+            playSound('win');
+            const box = document.createElement('div');
+            box.className = "fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 animate-fade-in";
+            box.innerHTML = `
+                <div class="bg-arcade-800 border-2 border-neon-cyan p-6 rounded-2xl max-w-md w-full text-center shadow-2xl">
+                    <div class="text-4xl mb-3">🎉</div>
+                    <h3 class="font-arcade text-xl font-bold text-neon-cyan mb-2">Notification</h3>
+                    <p class="text-sm text-arcade-300 mb-6">${msg}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="px-6 py-2.5 rounded-xl bg-neon-cyan text-arcade-900 font-arcade font-bold hover:brightness-110 transition">
+                        CONTINUE ARCADE
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(box);
+        }
+
+        // Window onload initialization
+        window.onload = function() {
+            updateGlobalHUD();
+        };
+    </script>
+</body>
+</html>
